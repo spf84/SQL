@@ -1,0 +1,18 @@
+Create table store_items (id integer primary key, name text,price integer, stock_level integer, amount_sold integer);
+Insert into store_items values(450,"yellow shirt", 50, 25, 8);
+Insert into store_items values (846,"floral pants", 40, 18, 61);
+Insert into store_items values (654,"jean shorts", 20, 16, 100);
+Insert into store_items values (080,"basic top", 2, 21, 0);
+Insert into store_items values (048,"tank top", 10, 11, 4);
+Insert into store_items values (840,"light jacket", 23, 27,0);
+Insert into store_items values (547,"one peice swimsuit", 6, 25, 56);
+Insert into store_items values (870, "leggings", 9, 85,22); 
+Insert into store_items values (684, "ruffle tank", 14, 7,5);
+Insert into store_items values (400, "skinny pants", 40, 68,28);
+Insert into store_items values (917, "skirt short", 54, 32,75);
+Insert into store_items values (802, "dress sleeveless", 42, 45,41);
+Insert into store_items values (215, "mini dress", 21, 10,63);
+Insert into store_items values (507, "slip ons", 28, 3,6);
+Insert into store_items values (921, "basic top black", 17, 53,87); 
+Select * from store_items Order by price;
+Select Sum(amount_sold) from store_items;
