@@ -1,0 +1,58 @@
+Below are questions and answers using Chinook data base. 
+
+
+# Show only the Customers from Brazil.
+SELECT * FROM chinook.customers 
+WHERE Country = "Brazil" ;
+
+
+# How many Invoices were there in 2009?
+SELECT COUNT(*)
+FROM chinook.Invoices
+WHERE InvoiceDate BETWEEN '2009-01-01' AND '2009-12-31';
+
+
+# Find a unique/distinct list of billing countries from the Invoice table.
+SELECT DISTINCT BillingCountry FROM chinook.Invoices ;
+
+
+# Provide a query that shows the invoices associated with each sales agent. The resulting table should include the Sales Agent's full name.
+SELECT emp.LastName, emp.Firstname, inv.InvoiceId
+FROM chinook.Employees emp 
+JOIN chinook.Customers cust ON cust.SupportRepId = emp.EmployeeId
+JOIN chinook.Invoices Inv ON Inv.CustomerId = cust.CustomerId;
+
+
+# Show Customers (their full names, customer ID, and country) who are not in the US.
+SELECT FirstName, LastName, CustomerId, Country 
+FROM chinook.customers 
+WHERE Country != "USA";
+
+
+# What genre does each artists play?
+Select genres.Name, artists.Name
+From genres
+Join tracks On genres.genreId = tracks.GenreId
+Join albums On tracks.albumId = albums.albumId
+Join artists On albums.ArtistId = artists.ArtistId
+Group by genres.Name;
+
+
+
+# Show the total sales made by each sales agent.
+SELECT emp.FirstName, emp.LastName,
+ROUND(SUM(Inv.Total), 2) as 'Total Sales' 
+FROM chinook.Employees emp
+JOIN chinook.Customers cust ON cust.SupportRepId = emp.EmployeeId
+JOIN chinook.Invoices Inv ON Inv.CustomerId = cust.CustomerId
+WHERE emp.Title = 'Sales Support Agent' 
+GROUP BY emp.FirstName;
+
+
+
+# Provide a query that shows all the Tracks, and include the Album name, Media type, and Genre.
+Select t.Name AS 'Track Name', a.Title AS 'Album Title', m.Name AS 'Media Type', g.Name AS 'Genre'
+From chinook.tracks t
+Join chinook.Albums a On a.AlbumID = t.AlbumId
+Join chinook.media_types m On m.MediaTypeId = t.MEdiaTypeId
+Join chinook.genres g On g.GenreId = t.GenreId;
